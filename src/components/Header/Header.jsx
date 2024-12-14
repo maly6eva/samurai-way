@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../../images/sprite.svg";
+import logo from "../../images/love.svg";
 import s from "./Header.module.css"
 
 export const Header = () => {
