@@ -1,6 +1,4 @@
 import React from 'react';
-import s from './MyPosts.module.css'
-import avatar from "../../../images/tyra.png";
 import {Post} from "./Post/Post";
 
 export const MyPosts = () => {
@@ -12,11 +10,9 @@ export const MyPosts = () => {
             <textarea name="" id="" cols="30" rows="10"></textarea>
             <button>Add post</button>
             <div>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+                <Post message="Go" like={333} />
+                <Post message="Gi" like={363} />
+                <Post message="Good post" like={303}  />
             </div>
         </div>
     );

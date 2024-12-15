@@ -1,15 +1,19 @@
 import React from 'react';
 import s from './Post.module.css'
 import avatar from "../../../../images/tyra.png";
+import * as props from "antd";
 
-export const Post= () => {
+
+
+
+export const Post= (props) => {
     return (
         <div className={s.item}>
             <img src={avatar} alt="Tyra Bunks"/>
-            post1
+            {props.message}
             <div>
                 <span>
-                    like
+                    {props.like}
                 </span>
             </div>
         </div>
