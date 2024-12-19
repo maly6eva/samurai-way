@@ -5,9 +5,9 @@ import {MyPosts} from "./MyPosts/MyPosts";
 
 export const Profile = () => {
     return (
-        <div className={s.content}>
+        <div>
             <div>
-                <img src={content} alt=""/>
+                <img src={content} className={s.contentImg} alt=""/>
             </div>
 
             <div>ava + description</div>

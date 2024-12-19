@@ -16,5 +16,8 @@ a {
 }
 
 
-
+.app-wrapper-content {
+    grid-area: c;
+    background-color: #7e7af6;
+}
 

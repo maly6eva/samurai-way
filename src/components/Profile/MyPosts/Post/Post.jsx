@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Post.module.css'
 import avatar from "../../../../images/tyra.png";
-import * as props from "antd";
+
 
 
 
@@ -13,8 +13,8 @@ export const Post= (props) => {
             {props.message}
             <div>
                 <span>
-                    {props.like}
-                </span>
+                    like
+                </span> {props.like}
             </div>
         </div>
     );
