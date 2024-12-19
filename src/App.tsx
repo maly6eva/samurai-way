@@ -15,7 +15,8 @@ function App() {
 
                 <div className="app-wrapper-content">
 
-                    <Route path='/dialogs' component={Dialogs}/>
+
+                    <Route path='/dialogs' component={Dialogs}/>     {/*exact - coвершенно точно*/}
                     <Route path='/profile' component={Profile}/>
                 </div>
 

@@ -1,4 +1,26 @@
-/*.content {*/
-/*    grid-area: c;*/
-/*    background-color: #7e7af6;*/
-/*}*/
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr
+}
+
+.dialogsItem {
+    padding: 10px;
+}
+.active {
+    color: gold;
+}
+
+.dialog {
+
+}
+.dialogLink {
+    color: black;
+}
+
+.messages {
+    padding: 10px;
+}
+
+.message {
+
+}
