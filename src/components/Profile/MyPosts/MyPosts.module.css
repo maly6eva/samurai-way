@@ -6,3 +6,11 @@
     width: 52px;
     height:72px;
 }
+
+.descriptionBlock {
+    padding: 50px;
+}
+
+.posts {
+    margin: 30px 0 30px;
+}
