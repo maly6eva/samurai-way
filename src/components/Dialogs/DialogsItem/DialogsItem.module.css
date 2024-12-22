@@ -1,26 +1,5 @@
-.dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr
-}
-
-.dialogsItem {
-    padding: 10px;
-}
-
-.active {
-    color: gold;
-}
 .dialog {
 
 }
-.dialogLink {
-    color: black;
-}
 
-.messages {
-    padding: 10px;
-}
 
-.message {
-
-}

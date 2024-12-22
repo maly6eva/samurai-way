@@ -2,14 +2,21 @@ import React from 'react';
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import s from './Profile.module.css'
-export const Profile = () => {
+import {PostProps} from "../../index";
+
+
+
+export type ProfileProps = {
+    post:  PostProps[]
+}
+
+
+export const Profile = ({post}: ProfileProps ) => {
+
     return (
         <div>
             <ProfileInfo/>
-            <div >
-                <MyPosts like={213} message={'rd'}/>
-            </div>
-
+            <MyPosts post={post}/>
         </div>
     );
 };
