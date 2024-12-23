@@ -9,11 +9,12 @@ export type PostProps = {
     message: string,
     like: number,
     id: number,
+    name: string;
 }
 let post: PostProps[] = [
-    {id: 1, message: 'Go', like: 373},
-    {id: 2, message: 'Gi', like: 233},
-    {id: 3, message: 'Good post', like: 133},
+    {id: 1, message: 'Go', like: 373, name: 'Ksenia'},
+    {id: 2, message: 'Gi', like: 233, name: 'Kristina'},
+    {id: 3, message: 'Good post', like: 133, name: 'Timur'},
 ]
 
 
@@ -42,6 +43,8 @@ let messagesData:  MessageProps[] = [
     {id: 2, message: 'How are you?'},
     {id: 3, message: 'OK'},
 ]
+
+
 
 
 

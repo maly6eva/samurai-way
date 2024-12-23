@@ -3,6 +3,7 @@ import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogsItem/DialogsItem";
 import {Messages} from "./Messages/Messages";
 import {DialogPropsType, MessageProps} from "../../index";
+import {findAllByDisplayValue} from "@testing-library/react";
 
 
 type DialogsDataPropsType = {
@@ -11,7 +12,6 @@ type DialogsDataPropsType = {
 }
 
     export const Dialogs = ({dialogsData, messagesData}: DialogsDataPropsType) => {
-
     let dialogElement = dialogsData.map(dialog => {
             return (
                 <DialogItem id={dialog.id} name={dialog.name}/>

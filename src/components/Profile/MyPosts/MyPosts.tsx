@@ -1,7 +1,8 @@
 import React from 'react';
 import {Post} from "./Post/Post";
 import s from './MyPosts.module.css'
-import {PostProps} from "../../../index";
+import { PostProps} from "../../../index";
+
 
 
 
@@ -16,7 +17,10 @@ export const MyPosts = ({post}: MyPostsProps ) => {
 
     let postElement = post.map((p) => {
         return (
-            <Post message={p.message} like={p.like} id={p.id}/>
+            <div className={s.posts}>
+                <Post message={p.message} like={p.like} id={p.id} name={p.name}/>
+            </div>
+
         )
     })
     return (

@@ -5,16 +5,17 @@ import {PostProps} from "../../../../index";
 
 
 
-export const Post = ({message, like}: PostProps) => {
+export const Post = ({message, like, name}: PostProps) => {
     return (
         <div className={s.item}>
             <img src={avatar} alt="Tyra Bunks"/>
             {message}
+
             <div>
+                <h3>{name}</h3>
                 <span>
                     like
-                </span> {like}
-            </div>
+                </span> {like}</div>
         </div>
     );
 };
