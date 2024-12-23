@@ -20,7 +20,6 @@ export const Profile = ({post}: ProfileProps ) => {
             <div className={s.myPosts}>
                 <MyPosts post={post} />
             </div>
-
         </div>
     );
 };

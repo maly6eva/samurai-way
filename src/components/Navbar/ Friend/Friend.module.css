@@ -1,0 +1,16 @@
+
+.friend {
+    font-weight: 900;
+    font-size: 30px;
+    color: #371414;
+}
+.friendImg img{
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+}
+
+/*.navbarFriend{*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*}*/

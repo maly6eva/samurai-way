@@ -13,3 +13,23 @@
 .activeLink{
     color: #b18a28
 }
+.friend {
+    font-weight: 700;
+    font-size: 30px;
+    color: #371414
+}
+
+
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.navbarFriend{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}

@@ -9,12 +9,10 @@ import {PostProps} from "../../../redux/state";
 
 export type MyPostsProps = {
     post: PostProps[]
-
 }
 
 
 export const MyPosts = ({post}: MyPostsProps) => {
-
 
     let postElement = post.map((p) => {
         return (

@@ -5,37 +5,33 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {DialogPropsType, MessageProps, PostProps} from "./redux/state";
+import { StateType} from "./redux/state";
 
 
 
-export type  AppPostProps = {
-    post: PostProps[]
-    dialogsData: DialogPropsType[]
-    messagesData: MessageProps[]
+export type AppPropsType = {
+    state: StateType
 }
 
-
-function App({post, dialogsData, messagesData}: AppPostProps) {
-
+function App({state}: AppPropsType) {
 
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
-                <Navbar/>
-
+                <Navbar navbar={state.profilePage.navbar}/>
                 <div className="app-wrapper-content">
-
-                    <Route path='/dialogs' component={() => <Dialogs  dialogsData={ dialogsData} messagesData={messagesData}/>}/>
-
-                    <Route path='/profile'  component={() => <Profile post={post} />}/>
-
+                    <Route path='/dialogs' component={() => <Dialogs
+                        dialogsData={state.dialogsPage.dialogsData}
+                        messagesData={state.dialogsPage.messagesData}
+                    />}/>
+                    <Route path='/profile'  component={() => <Profile
+                        post={state.profilePage.post}
+                    />}
+                    />
                 </div>
-
             </div>
         </BrowserRouter>)
-
 }
 
 export default App;
