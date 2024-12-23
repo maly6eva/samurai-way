@@ -26,8 +26,11 @@ function App({post, dialogsData, messagesData}: AppPostProps) {
                 <Navbar/>
 
                 <div className="app-wrapper-content">
+
                     <Route path='/dialogs' component={() => <Dialogs  dialogsData={ dialogsData} messagesData={messagesData}/>}/>
+
                     <Route path='/profile'  component={() => <Profile post={post} />}/>
+
                 </div>
 
             </div>

@@ -3,7 +3,7 @@ import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogsItem/DialogsItem";
 import {Messages} from "./Messages/Messages";
 import {} from "../../index";
-import {DialogPropsType, MessageProps} from "../../redux/state";
+import {DialogPropsType, MessageProps, state} from "../../redux/state";
 
 
 
@@ -25,8 +25,9 @@ type DialogsDataPropsType = {
                 <Messages  id={messages.id} message={messages.message}/>
             )
         })
-
+        debugger
     return (
+
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
                 {dialogElement}
