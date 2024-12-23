@@ -6,8 +6,6 @@ import {DialogPropsType} from "../../../redux/state";
 import avatar from "../../../images/multiashnaia.webp";
 
 
-
-
 export const DialogItem = ({name, id}:  DialogPropsType ) => {
     let path = '/dialogs/' + id
     return (
@@ -15,7 +13,6 @@ export const DialogItem = ({name, id}:  DialogPropsType ) => {
             <img src={avatar} alt="Tyra Bunks"/>
             <NavLink to={path} activeClassName={s.active}>{name}</NavLink>
         </div>
-
     )
 }
 

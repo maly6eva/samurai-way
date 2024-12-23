@@ -4,7 +4,7 @@ import React from "react";
 import {NavbarPropsType} from "../../../redux/state";
 
 
-export const Friend = ({id, name}: NavbarPropsType ) => {
+export const Friend = ({id, name}: NavbarPropsType) => {
     return (
         <div className={s.navbarFriend}>
             <div className={s.friendImg} key={id}>

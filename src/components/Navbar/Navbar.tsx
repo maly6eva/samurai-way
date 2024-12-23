@@ -40,7 +40,6 @@ export const Navbar = ({navbar}: DialogsDataPropsType) => {
                     <div className={s.navbarFriend}>
                         {navbarFriend}
                     </div>
-
                 </div>
             </nav>
         </>

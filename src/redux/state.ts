@@ -22,7 +22,7 @@ export type MessageProps = {
 
 export type ProfilePageProps = {
     post: PostProps[]
-    navbar:  NavbarPropsType[]
+    navbar: NavbarPropsType[]
 }
 
 export type DialogsPageType = {
@@ -35,11 +35,7 @@ export type StateType = {
     dialogsPage: DialogsPageType
 }
 
-
-
-
-
-export let state:  StateType = {
+export let state: StateType = {
     profilePage: {
         post: [
             {id: 1, message: 'Go', like: 373, name: 'Ksenia'},
@@ -69,16 +65,3 @@ export let state:  StateType = {
         ]
     }
 }
-
-//
-// export type  CitationPropsType = {
-//     id: number,
-//     citation: string
-// }
-//
-//
-// let citation: CitationPropsType[] = [
-//     {id: 1, citation: 'Пройдет время, и жизнь покажет, что все было только к лучшему.'},
-//     {id: 2, citation: 'Бесполезной жизни стоит опасаться куда больше, чем смерти.'},
-//     {id: 3, citation: 'Если ты не наделил ценностью жизнь, она не будет ее иметь'},
-// ]

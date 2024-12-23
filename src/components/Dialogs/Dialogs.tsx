@@ -3,8 +3,7 @@ import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogsItem/DialogsItem";
 import {Messages} from "./Messages/Messages";
 import {} from "../../index";
-import {DialogPropsType, MessageProps, state} from "../../redux/state";
-
+import {DialogPropsType, MessageProps} from "../../redux/state";
 
 
 type DialogsDataPropsType = {
@@ -12,22 +11,19 @@ type DialogsDataPropsType = {
     messagesData: MessageProps[]
 }
 
-    export const Dialogs = ({dialogsData, messagesData}: DialogsDataPropsType) => {
+export const Dialogs = ({dialogsData, messagesData}: DialogsDataPropsType) => {
     let dialogElement = dialogsData.map(dialog => {
-            return (
-                <DialogItem id={dialog.id} name={dialog.name}/>
-            )
-        })
-
+        return (
+            <DialogItem id={dialog.id} name={dialog.name}/>
+        )
+    })
 
     let messagesElement = messagesData.map((messages) => {
-            return (
-                <Messages  id={messages.id} message={messages.message}/>
-            )
-        })
-        debugger
+        return (
+            <Messages id={messages.id} message={messages.message}/>
+        )
+    })
     return (
-
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
                 {dialogElement}
@@ -36,6 +32,5 @@ type DialogsDataPropsType = {
                 {messagesElement}
             </div>
         </div>
-
     );
 };

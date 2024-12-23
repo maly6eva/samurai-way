@@ -5,8 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import { StateType} from "./redux/state";
-
+import {StateType} from "./redux/state";
 
 
 export type AppPropsType = {
@@ -25,7 +24,7 @@ function App({state}: AppPropsType) {
                         dialogsData={state.dialogsPage.dialogsData}
                         messagesData={state.dialogsPage.messagesData}
                     />}/>
-                    <Route path='/profile'  component={() => <Profile
+                    <Route path='/profile' component={() => <Profile
                         post={state.profilePage.post}
                     />}
                     />
