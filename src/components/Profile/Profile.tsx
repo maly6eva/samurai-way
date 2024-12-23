@@ -2,7 +2,8 @@ import React from 'react';
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import s from './Profile.module.css'
-import {PostProps} from "../../index";
+import { } from "../../index";
+import {PostProps} from "../../redux/state";
 
 
 
@@ -17,7 +18,7 @@ export const Profile = ({post}: ProfileProps ) => {
         <div>
             <ProfileInfo/>
             <div className={s.myPosts}>
-                <MyPosts post={post}/>
+                <MyPosts post={post} />
             </div>
 
         </div>

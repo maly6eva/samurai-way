@@ -1,28 +1,31 @@
 import React from 'react';
 import {Post} from "./Post/Post";
 import s from './MyPosts.module.css'
-import { PostProps} from "../../../index";
+import { } from "../../../index";
+import {PostProps} from "../../../redux/state";
 
 
 
 
 export type MyPostsProps = {
-    post:  PostProps[]
+    post: PostProps[]
+
 }
 
 
-export const MyPosts = ({post}: MyPostsProps ) => {
-
+export const MyPosts = ({post}: MyPostsProps) => {
 
 
     let postElement = post.map((p) => {
         return (
             <div className={s.posts}>
-                <Post message={p.message} like={p.like} id={p.id} name={p.name}/>
+                <Post message={p.message} like={p.like}  name={p.name}  />
             </div>
 
         )
     })
+
+
     return (
         <div className={s.descriptionBlock}>
             My posts
@@ -36,9 +39,15 @@ export const MyPosts = ({post}: MyPostsProps ) => {
                 <button>Add post</button>
             </div>
 
-            <div className={s.posts}>
-                {postElement}
+
+            <div className={s.dialogs}>
+                <div className={s.posts}>
+                    {postElement}
+
+                </div>
             </div>
+
+
         </div>
     );
 };

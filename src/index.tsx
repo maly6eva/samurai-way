@@ -2,53 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from "./App";
+import {state} from './redux/state'
 
-
-
-export type PostProps = {
-    message: string,
-    like: number,
-    id: number,
-    name: string;
-}
-let post: PostProps[] = [
-    {id: 1, message: 'Go', like: 373, name: 'Ksenia'},
-    {id: 2, message: 'Gi', like: 233, name: 'Kristina'},
-    {id: 3, message: 'Good post', like: 133, name: 'Timur'},
-]
-
-
-export type DialogPropsType = {
-    name: string,
-    id: number,
-}
-
-let dialogsData : DialogPropsType[] = [
-    {id: 1, name: 'Ksenia'},
-    {id: 2, name: 'Valery'},
-    {id: 3, name: 'Dimasik'},
-    {id: 4, name: 'Diana'},
-    {id: 5, name: 'Timur'},
-    {id: 6, name: 'Darina'}
-]
-
-
-export type MessageProps = {
-    id: number,
-    message: string;
-}
-
-let messagesData:  MessageProps[] = [
-    {id: 1, message: 'Hi'},
-    {id: 2, message: 'How are you?'},
-    {id: 3, message: 'OK'},
-]
 
 
 
 
 
 ReactDOM.render(
-    <App  post={post}  dialogsData={dialogsData} messagesData={messagesData}/>,
+    <App post={state.post}  dialogsData={state.dialogsData} messagesData={state.messagesData} />,
   document.getElementById('root')
 );

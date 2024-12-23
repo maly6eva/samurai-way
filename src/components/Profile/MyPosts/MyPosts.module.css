@@ -9,8 +9,18 @@
 
 .descriptionBlock {
     padding: 50px;
+
 }
 
 .posts {
     padding: 20px 0 20px 0
+}
+
+.posts2{
+    padding: 40px 0 20px 0
+}
+
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
 }

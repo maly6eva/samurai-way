@@ -2,8 +2,9 @@ import React from 'react';
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogsItem/DialogsItem";
 import {Messages} from "./Messages/Messages";
-import {DialogPropsType, MessageProps} from "../../index";
-import {findAllByDisplayValue} from "@testing-library/react";
+import {} from "../../index";
+import {DialogPropsType, MessageProps} from "../../redux/state";
+
 
 
 type DialogsDataPropsType = {

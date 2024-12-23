@@ -1,13 +1,22 @@
 import React from 'react';
 import s from './Post.module.css'
 import avatar from "../../../../images/multiashnaia.webp";
-import {PostProps} from "../../../../index";
 
 
 
-export const Post = ({message, like, name}: PostProps) => {
+
+type PastTypeProps= {
+    message: string,
+    like: number,
+    name: string,
+}
+
+export const Post = ({message, like, name}:  PastTypeProps) => {
+
+
     return (
         <div className={s.item}>
+
             <img src={avatar} alt="Tyra Bunks"/>
             {message}
 

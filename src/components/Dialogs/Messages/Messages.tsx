@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Messages.module.css'
-import {MessageProps} from "../../../index";
+import {} from "../../../index";
+import {MessageProps} from "../../../redux/state";
 
 
 
