@@ -7,7 +7,11 @@ import {MessageProps} from "../../../redux/state";
 
 export const Messages = ({message}: MessageProps) => {
     return (
-        <div className={s.messages}>{message}</div>
-    );
+        <>
+            <div className={s.messages}>{message}</div>
+        </>
+
+    )
+        ;
 };
 
