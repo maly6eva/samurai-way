@@ -10,9 +10,10 @@ import {StateType} from "./redux/state";
 
 export type AppPropsType = {
     state: StateType
+    addPost: (postMassage: string) => void
 }
 
-function App({state}: AppPropsType) {
+function App({state, addPost}: AppPropsType) {
 
     return (
         <BrowserRouter>
@@ -25,7 +26,7 @@ function App({state}: AppPropsType) {
                         messagesData={state.dialogsPage.messagesData}
                     />}/>
                     <Route path='/profile' component={() => <Profile
-                        post={state.profilePage.post}
+                        post={state.profilePage.post} addPost={addPost}
                     />}
                     />
                 </div>

@@ -65,3 +65,44 @@ export let state: StateType = {
         ]
     }
 }
+
+
+export let addPost = (postMassage: string) => {
+    debugger
+    let newPost = {
+        id: 5,
+        message: postMassage,
+        like: 0,
+        name: 'Ksenia'
+    }
+    state.profilePage.post.push(newPost)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,15 +8,16 @@ import {PostProps} from "../../redux/state";
 
 export type ProfileProps = {
     post: PostProps[]
+    addPost: (postMassage: string) => void
 }
 
 
-export const Profile = ({post}: ProfileProps) => {
+export const Profile = ({post, addPost}: ProfileProps) => {
     return (
         <div>
             <ProfileInfo/>
             <div className={s.myPosts}>
-                <MyPosts post={post}/>
+                <MyPosts post={post} addPost={addPost}/>
             </div>
         </div>
     );

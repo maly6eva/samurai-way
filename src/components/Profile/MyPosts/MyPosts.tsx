@@ -8,11 +8,13 @@ import {PostProps} from "../../../redux/state";
 
 
 export type MyPostsProps = {
+
     post: PostProps[]
+    addPost: (postMassage: string) => void
 }
 
 
-export const MyPosts = ({post}: MyPostsProps) => {
+export const MyPosts = ({post, addPost}: MyPostsProps) => {
     const [newPostElement, setNewPostElement ] = useState('')
 
     let postElement = post.map((p) => {
@@ -28,9 +30,10 @@ export const MyPosts = ({post}: MyPostsProps) => {
     }
 
 
-    let addPost = () => {
+    let addPostElement = () => {
+        debugger
     if(newPostElement) {
-        alert(newPostElement)
+        addPost(newPostElement)
     }
     }
 
@@ -44,7 +47,7 @@ export const MyPosts = ({post}: MyPostsProps) => {
                 <textarea value={newPostElement} onChange={addPostValue} placeholder={'Введите сообщение...'}></textarea>
             </div>
             <div>
-                <button  onClick={ addPost}>Add post</button>
+                <button  onClick={addPostElement}>Add post</button>
             </div>
 
             <div className={s.dialogs}>
