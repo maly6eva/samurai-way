@@ -8,7 +8,6 @@ import {PostProps} from "../../../redux/state";
 
 
 export type MyPostsProps = {
-
     post: PostProps[]
     addPost: (postMassage: string) => void
 }
@@ -31,7 +30,6 @@ export const MyPosts = ({post, addPost}: MyPostsProps) => {
 
 
     let addPostElement = () => {
-        debugger
     if(newPostElement) {
         addPost(newPostElement)
     }
