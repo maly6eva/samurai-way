@@ -24,12 +24,14 @@ export type MessageProps = {
 
 export type ProfilePageProps = {
     post: PostProps[]
+    newPostText: string
     navbar: NavbarPropsType[]
 }
 
 export type DialogsPageType = {
     dialogsData: DialogPropsType[]
     messagesData: MessageProps[]
+    messages: string
 }
 
 export type StateType = {
@@ -44,13 +46,13 @@ export let state: StateType = {
             {id: 2, message: 'Gi', like: 233, name: 'Kristina'},
             {id: 3, message: 'Good post', like: 133, name: 'Timur'}
         ],
+        newPostText: 'it-Ksenia',
         navbar: [
             {id: 1, name: 'Ksen'},
-            {id: 2, name: 'Valer'},
+            {id: 2, name: 'Valera'},
             {id: 3, name: 'Dima'},
         ]
     },
-
     dialogsPage: {
         dialogsData: [
             {id: 1, name: 'Ksenia'},
@@ -64,7 +66,8 @@ export let state: StateType = {
             {id: 1, message: 'Hi'},
             {id: 2, message: 'How are you?'},
             {id: 3, message: 'OK'},
-        ]
+        ],
+        messages: 'Messages'
     }
 }
 
@@ -72,13 +75,36 @@ export let state: StateType = {
 export let addPost = (postMassage: string) => {
     let newPost = {
         id: 5,
-        message: postMassage,
+        message: state.profilePage.newPostText,
         like: 0,
         name: 'Ksenia'
     }
     state.profilePage.post.push(newPost)
+    state.profilePage.newPostText = ''
     rerenderEntireTree(state)
 }
+
+export let updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText
+    rerenderEntireTree(state)
+}
+
+
+export let messagesPost = (postMassage: string) => {
+    let messageYouPost = {
+        id: 1,
+        message: state.dialogsPage.messages
+    }
+    state.dialogsPage.messagesData.push(messageYouPost)
+    state.dialogsPage.messages = ''
+    rerenderEntireTree(state)
+}
+
+export let updateNewMessagesText = (newMessages: string) => {
+    state.dialogsPage.messages = newMessages
+    rerenderEntireTree(state)
+}
+
 
 
 

@@ -1,40 +1,53 @@
+
+
 import React, {ChangeEvent, useRef, useState} from 'react';
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogsItem/DialogsItem";
 import {Messages} from "./Messages/Messages";
 import {} from "../../index";
-import {DialogPropsType, MessageProps} from "../../redux/state";
+import {DialogPropsType, DialogsPageType, MessageProps} from "../../redux/state";
 
 
 type DialogsDataPropsType = {
-    dialogsData: DialogPropsType[]
-    messagesData: MessageProps[]
+    dialogsPage: DialogsPageType
+    messagesPost: (postMassage: string) => void
+    messages: string
+    updateNewMessagesText: (newMessages: string) => void
 }
 
-export const Dialogs = ({dialogsData, messagesData}: DialogsDataPropsType) => {
+export const Dialogs = ({ dialogsPage, messagesPost, messages,   updateNewMessagesText}: DialogsDataPropsType) => {
     // const newTextElement = useRef<HTMLTextAreaElement>(null)
     const [newTextElement, setNewTextElement] = useState('')
 
-    let dialogElement = dialogsData.map(dialog => {
+    let dialogElement =  dialogsPage.dialogsData.map(dialog => {
         return (
             <DialogItem key={dialog.id} id={dialog.id} name={dialog.name}/>
         )
     })
 
-    let messagesElement = messagesData.map((messages) => {
+    let messagesElement = dialogsPage.messagesData.map((messages) => {
         return (
             <Messages key={messages.id} id={messages.id} message={messages.message}/>
         )
     })
 
+     let messElement =  dialogsPage.messagesData.map((message) => {
+         return (
+             <div>
+                 <p>{message.message}</p>
+             </div>
+         )
+     })
+
 
     const newTextValue = (e:  React.ChangeEvent<HTMLTextAreaElement>) => {
-      setNewTextElement(e.currentTarget.value)
+        updateNewMessagesText(e.currentTarget.value)
     }
 
     const newText = () => {
-        if (newTextElement) {
-            alert( newTextElement)
+        if (messages.trim()) {
+            messagesPost(messages)
+            updateNewMessagesText('')
         }
     }
 
@@ -47,7 +60,7 @@ export const Dialogs = ({dialogsData, messagesData}: DialogsDataPropsType) => {
             <div className={s.messages}>
                     {messagesElement}
                 <div className={s.textmessages}>
-                    <textarea value={ newTextElement} onChange={newTextValue} placeholder={'Введите сообщение...'}></textarea>
+                    <textarea value={messages} onChange={newTextValue} placeholder={'Введите сообщение...'}></textarea>
                     <button onClick={newText}>Добавить!</button>
                 </div>
             </div>

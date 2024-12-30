@@ -1,51 +1,52 @@
-import React, {ChangeEvent, useRef, useState} from 'react';
+import React, {ChangeEvent, MouseEventHandler, useState} from 'react';
 import {Post} from "./Post/Post";
 import s from './MyPosts.module.css'
-import { } from "../../../index";
-import {PostProps} from "../../../redux/state";
-
-
+import { PostProps} from "../../../redux/state";
 
 
 export type MyPostsProps = {
     post: PostProps[]
     addPost: (postMassage: string) => void
+    updateNewPostText: (newText: string) => void
+    newPostText: string,
 }
 
+export const MyPosts = ({post, addPost, newPostText, updateNewPostText}: MyPostsProps) => {
+    const [newPostElement, setNewPostElement] = useState('')
 
-export const MyPosts = ({post, addPost}: MyPostsProps) => {
-    const [newPostElement, setNewPostElement ] = useState('')
 
     let postElement = post.map((p) => {
         return (
             <div className={s.posts}>
-                <Post message={p.message} like={p.like}  name={p.name}  />
+                <Post message={p.message} like={p.like} name={p.name}/>
             </div>
         )
     })
 
-    let addPostValue = (e: ChangeEvent<HTMLTextAreaElement> ) => {
-        setNewPostElement(e.currentTarget.value)
+    let addPostValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        updateNewPostText(e.currentTarget.value)
     }
-
 
     let addPostElement = () => {
-    if(newPostElement) {
-        addPost(newPostElement)
+        if (newPostText.trim()) {
+            addPost(newPostText)
+            updateNewPostText('')
+        }
     }
-    }
-
     return (
         <div className={s.descriptionBlock}>
             My posts
             <div>
                 <h3> New post</h3>
             </div>
+
             <div>
-                <textarea value={newPostElement} onChange={addPostValue} placeholder={'Введите сообщение...'}></textarea>
+                <textarea value={newPostText} onChange={addPostValue}
+                          placeholder={'Введите сообщение...'}/>
             </div>
+
             <div>
-                <button  onClick={addPostElement}>Add post</button>
+                <button onClick={addPostElement}>Add post</button>
             </div>
 
             <div className={s.dialogs}>
@@ -56,34 +57,6 @@ export const MyPosts = ({post, addPost}: MyPostsProps) => {
         </div>
     );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //
