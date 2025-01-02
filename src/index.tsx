@@ -1,9 +1,18 @@
+import {StateType, store} from './redux/state'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from "./App";
 
-import {addPost, state} from './redux/state'
-import {rerenderEntireTree} from "./render";
-
-// addPost('Jgi!')
 
 
+ let rerenderEntireTree = (state: StateType) => {
+    ReactDOM.render(
+        <App state={state} addPost={store.addPost.bind(store)}  updateNewPostText={store.updateNewPostText.bind(store)} messagesPost={store.messagesPost.bind(store)} updateNewMessagesText={store.updateNewMessagesText.bind(store)}/>,
+        document.getElementById('root')
+    );
+}
 
-rerenderEntireTree(state)
+rerenderEntireTree(store.getState())
+
+store.subscriber(rerenderEntireTree)
