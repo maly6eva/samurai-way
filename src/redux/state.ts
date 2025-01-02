@@ -36,6 +36,12 @@ export type StateType = {
     dialogsPage: DialogsPageType
 }
 
+export type ActionType =
+    | {type: 'addPost'}
+    | {type: 'updateNewPostText'; newText: string}
+    | {type: 'updateNewMessagesText'; newMessages: string}
+    | {type: 'messagesPost'};
+
 
 export let store = {
     _state: {
@@ -79,7 +85,7 @@ export let store = {
     subscriber(observer: (state: StateType) => void) {
         this._callSubscriber = observer
     },
-    
+
     addPost(postMassage: string) {
         let newPost = {
             id: 5,
@@ -108,6 +114,34 @@ export let store = {
         this._state.dialogsPage.messages = newMessages
         this._callSubscriber(this._state)
     },
+
+    dispatch(action: ActionType) {
+        if(action.type === 'addPost') {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                like: 0,
+                name: 'Ksenia'
+            }
+            this._state.profilePage.post.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber(this._state)
+        }else if(action.type === 'updateNewPostText') {
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
+        }else if (action.type === 'messagesPost') {
+            const messageYouPost = {
+                id: this._state.dialogsPage.messagesData.length + 1,
+                message: this._state.dialogsPage.messages
+            }
+            this._state.dialogsPage.messagesData.push(messageYouPost)
+            this._state.dialogsPage.messages = ''
+            this._callSubscriber(this._state)
+        }else if (action.type === 'updateNewMessagesText') {
+            this._state.dialogsPage.messages = action.newMessages
+            this._callSubscriber(this._state)
+        }
+    }
 
 }
 
