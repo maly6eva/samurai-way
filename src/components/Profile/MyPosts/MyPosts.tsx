@@ -1,7 +1,7 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {Post} from "./Post/Post";
 import s from './MyPosts.module.css'
-import {ActionType, PostProps} from "../../../redux/state";
+import {ActionType, addPostElement, addPostValue, PostProps} from "../../../redux/state";
 
 
 export type MyPostsProps = {
@@ -11,26 +11,13 @@ export type MyPostsProps = {
 }
 
 export const MyPosts = ({post, newPostText, dispatch}: MyPostsProps) => {
-
-
-    let postElement = post.map((p) => {
+    const postElement = post.map((p) => {
         return (
             <div className={s.posts} key={p.id}>
                 <Post message={p.message} like={p.like} name={p.name}/>
             </div>
         )
     })
-
-    let addPostValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch({type: 'updateNewPostText',  newText: e.currentTarget.value})
-    }
-
-    let addPostElement = () => {
-        if (newPostText.trim()) {
-           dispatch({type: 'addPost'})
-        }
-    }
-
     return (
         <div className={s.descriptionBlock}>
             My posts
@@ -38,12 +25,12 @@ export const MyPosts = ({post, newPostText, dispatch}: MyPostsProps) => {
                 <h3>New post</h3>
             </div>
             <div>
-                <textarea value={newPostText} onChange={addPostValue}
+                <textarea value={newPostText} onChange={(e) => addPostValue(e, dispatch)}
                           placeholder={'Введите сообщение...'}/>
             </div>
 
             <div>
-                <button onClick={addPostElement}>Add post</button>
+                <button onClick={() => addPostElement(newPostText, dispatch)}>Add post</button>
             </div>
             <div className={s.dialogs}>
                 <div className={s.posts}>

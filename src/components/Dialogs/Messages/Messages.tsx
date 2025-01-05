@@ -1,8 +1,6 @@
 import React from 'react';
 import s from './Messages.module.css'
-import {} from "../../../index";
 import {MessageProps} from "../../../redux/state";
-
 
 
 export const Messages = ({message}: MessageProps) => {
@@ -10,8 +8,6 @@ export const Messages = ({message}: MessageProps) => {
         <>
             <div className={s.messages}>{message}</div>
         </>
-
     )
-        ;
 };
 

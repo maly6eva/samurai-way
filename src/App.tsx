@@ -14,7 +14,6 @@ export type AppPropsType = {
 }
 
 function App({state, dispatch}: AppPropsType) {
-
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -28,8 +27,7 @@ function App({state, dispatch}: AppPropsType) {
                     <Route path='/profile' render={() => <Profile
                         profilePage={state.profilePage}
                         dispatch={dispatch}
-                    />}
-                    />
+                    />}/>
                 </div>
             </div>
         </BrowserRouter>)

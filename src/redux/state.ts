@@ -1,3 +1,5 @@
+import React, {ChangeEvent} from "react";
+
 export type PostProps = {
     message: string,
     like: number,
@@ -31,17 +33,91 @@ export type DialogsPageType = {
     messagesData: MessageProps[]
     messages: string
 }
+
 export type StateType = {
     profilePage: ProfilePageProps
     dialogsPage: DialogsPageType
 }
 
-export type ActionType =
-    | {type: 'addPost'}
-    | {type: 'updateNewPostText'; newText: string}
-    | {type: 'updateNewMessagesText'; newMessages: string}
-    | {type: 'messagesPost'};
 
+export const ADD_POST = 'addPost' as const;
+export const UPDATE_NEW_POST_TEXT = 'updateNewPostText' as const;
+export const UPDATE_NEW_MESSAGES_TEXT = 'updateNewMessageText' as const;
+export const MESSAGES_POST = 'messagesPost' as const
+
+export type AddPostAction = {
+    type: typeof ADD_POST
+}
+export type UpdateNewPostTextAction = {
+    type: typeof UPDATE_NEW_POST_TEXT;
+    newText: string
+}
+export type UpdateNewMessagesText = {
+    type: typeof UPDATE_NEW_MESSAGES_TEXT
+    newMessages: string
+}
+
+export type MessagesPostAction = {
+    type: typeof MESSAGES_POST
+}
+
+
+export type ActionType =
+    | AddPostAction
+    | UpdateNewPostTextAction
+    | UpdateNewMessagesText
+    | MessagesPostAction
+
+
+export const addPostActionCreator = (): AddPostAction => ({
+    type: ADD_POST
+})
+
+export const updateNewPostTextActionCreator = (newText: string): UpdateNewPostTextAction => ({
+    type: UPDATE_NEW_POST_TEXT,
+    newText,
+})
+
+export const UpdateNewMessagesTextCreator = (newMessages: string): UpdateNewMessagesText => ({
+    type: UPDATE_NEW_MESSAGES_TEXT,
+    newMessages,
+})
+
+export const MessagesPostActionCreator = (): MessagesPostAction => ({
+    type: MESSAGES_POST
+})
+
+export const addPostValue = (
+    e: ChangeEvent<HTMLTextAreaElement>,
+    dispatch: (action: ActionType) => void
+): void => {
+    dispatch(updateNewPostTextActionCreator(e.currentTarget.value))
+}
+
+export const addPostElement = (
+    newsText: string,
+    dispatch: (action: ActionType) => void
+): void => {
+    if (newsText.trim()) {
+        dispatch(addPostActionCreator())
+    }
+}
+
+export const newTextValue = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+    dispatch: (action: ActionType) => void
+) => {
+    dispatch(UpdateNewMessagesTextCreator(e.currentTarget.value))
+}
+
+export const newText = (
+    messages: string,
+    dispatch: (action: ActionType) => void
+): void => {
+    if (messages.trim()) {
+        dispatch(MessagesPostActionCreator())
+    }
+}
 
 export let store = {
     _state: {
@@ -73,7 +149,7 @@ export let store = {
                 {id: 3, message: 'OK'},
             ],
             messages: ''
-        }
+        },
     },
     _callSubscriber(state: StateType) {
         console.log("rerenderEntireTree")
@@ -86,39 +162,10 @@ export let store = {
         this._callSubscriber = observer
     },
 
-    addPost(postMassage: string) {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            like: 0,
-            name: 'Ksenia'
-        }
-        this._state.profilePage.post.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber(this._state)
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state)
-    },
-    messagesPost(postMassage: string) {
-        const messageYouPost = {
-            id: this._state.dialogsPage.messagesData.length + 1,
-            message: this._state.dialogsPage.messages
-        }
-        this._state.dialogsPage.messagesData.push(messageYouPost)
-        this._state.dialogsPage.messages = ''
-        this._callSubscriber(this._state)
-    },
-    updateNewMessagesText(newMessages: string) {
-        this._state.dialogsPage.messages = newMessages
-        this._callSubscriber(this._state)
-    },
-
     dispatch(action: ActionType) {
-        if(action.type === 'addPost') {
+        if (action.type === ADD_POST) {
             let newPost = {
-                id: 5,
+                id: this._state.profilePage.post.length + 1,
                 message: this._state.profilePage.newPostText,
                 like: 0,
                 name: 'Ksenia'
@@ -126,10 +173,12 @@ export let store = {
             this._state.profilePage.post.push(newPost)
             this._state.profilePage.newPostText = ''
             this._callSubscriber(this._state)
-        }else if(action.type === 'updateNewPostText') {
+
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber(this._state)
-        }else if (action.type === 'messagesPost') {
+
+        } else if (action.type === 'messagesPost') {
             const messageYouPost = {
                 id: this._state.dialogsPage.messagesData.length + 1,
                 message: this._state.dialogsPage.messages
@@ -137,13 +186,13 @@ export let store = {
             this._state.dialogsPage.messagesData.push(messageYouPost)
             this._state.dialogsPage.messages = ''
             this._callSubscriber(this._state)
-        }else if (action.type === 'updateNewMessagesText') {
+        } else if (action.type === UPDATE_NEW_MESSAGES_TEXT) {
             this._state.dialogsPage.messages = action.newMessages
             this._callSubscriber(this._state)
         }
     }
-
 }
+
 
 
 
