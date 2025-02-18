@@ -1,4 +1,13 @@
-import React, {ChangeEvent} from "react";
+import {
+    ProfileActionType,
+    profileReducer,
+} from "./profile-reducer";
+import {
+    DialogsActionType,
+    dialogsReducer,
+} from "./dialogs-reducer";
+
+
 
 export type PostProps = {
     message: string,
@@ -39,88 +48,14 @@ export type StateType = {
     dialogsPage: DialogsPageType
 }
 
-
-export const ADD_POST = 'addPost' as const;
-export const UPDATE_NEW_POST_TEXT = 'updateNewPostText' as const;
-export const UPDATE_NEW_MESSAGES_TEXT = 'updateNewMessageText' as const;
-export const MESSAGES_POST = 'messagesPost' as const
-
-export type AddPostAction = {
-    type: typeof ADD_POST
-}
-export type UpdateNewPostTextAction = {
-    type: typeof UPDATE_NEW_POST_TEXT;
-    newText: string
-}
-export type UpdateNewMessagesText = {
-    type: typeof UPDATE_NEW_MESSAGES_TEXT
-    newMessages: string
-}
-
-export type MessagesPostAction = {
-    type: typeof MESSAGES_POST
-}
+export type ActionType = ProfileActionType | DialogsActionType;
 
 
-export type ActionType =
-    | AddPostAction
-    | UpdateNewPostTextAction
-    | UpdateNewMessagesText
-    | MessagesPostAction
 
 
-export const addPostActionCreator = (): AddPostAction => ({
-    type: ADD_POST
-})
 
-export const updateNewPostTextActionCreator = (newText: string): UpdateNewPostTextAction => ({
-    type: UPDATE_NEW_POST_TEXT,
-    newText,
-})
 
-export const UpdateNewMessagesTextCreator = (newMessages: string): UpdateNewMessagesText => ({
-    type: UPDATE_NEW_MESSAGES_TEXT,
-    newMessages,
-})
-
-export const MessagesPostActionCreator = (): MessagesPostAction => ({
-    type: MESSAGES_POST
-})
-
-export const addPostValue = (
-    e: ChangeEvent<HTMLTextAreaElement>,
-    dispatch: (action: ActionType) => void
-): void => {
-    dispatch(updateNewPostTextActionCreator(e.currentTarget.value))
-}
-
-export const addPostElement = (
-    newsText: string,
-    dispatch: (action: ActionType) => void
-): void => {
-    if (newsText.trim()) {
-        dispatch(addPostActionCreator())
-    }
-}
-
-export const newTextValue = (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
-    dispatch: (action: ActionType) => void
-) => {
-    dispatch(UpdateNewMessagesTextCreator(e.currentTarget.value))
-}
-
-export const newText = (
-    messages: string,
-    dispatch: (action: ActionType) => void
-): void => {
-    if (messages.trim()) {
-        dispatch(MessagesPostActionCreator())
-    }
-}
-
-export let store = {
-    _state: {
+export const initialState: StateType= {
         profilePage: {
             post: [
                 {id: 1, message: 'Go', like: 373, name: 'Ksenia'},
@@ -149,11 +84,14 @@ export let store = {
                 {id: 3, message: 'OK'},
             ],
             messages: ''
+        }
+    }
+
+    export let store = {
+        _state: initialState,
+        _callSubscriber(state: StateType) {
+            console.log("rerenderEntireTree");
         },
-    },
-    _callSubscriber(state: StateType) {
-        console.log("rerenderEntireTree")
-    },
 
     getState() {
         return this._state
@@ -161,36 +99,14 @@ export let store = {
     subscriber(observer: (state: StateType) => void) {
         this._callSubscriber = observer
     },
-
-    dispatch(action: ActionType) {
-        if (action.type === ADD_POST) {
-            let newPost = {
-                id: this._state.profilePage.post.length + 1,
-                message: this._state.profilePage.newPostText,
-                like: 0,
-                name: 'Ksenia'
+        dispatch(action: ActionType) {
+            this._state = {
+            ...this._state,
+                profilePage: profileReducer(this._state.profilePage, action as ProfileActionType),
+                dialogsPage: dialogsReducer(this._state.dialogsPage, action as DialogsActionType),
             }
-            this._state.profilePage.post.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber(this._state)
-
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber(this._state)
-
-        } else if (action.type === 'messagesPost') {
-            const messageYouPost = {
-                id: this._state.dialogsPage.messagesData.length + 1,
-                message: this._state.dialogsPage.messages
-            }
-            this._state.dialogsPage.messagesData.push(messageYouPost)
-            this._state.dialogsPage.messages = ''
-            this._callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_MESSAGES_TEXT) {
-            this._state.dialogsPage.messages = action.newMessages
-            this._callSubscriber(this._state)
-        }
-    }
+            this._callSubscriber(this._state);
+        },
 }
 
 

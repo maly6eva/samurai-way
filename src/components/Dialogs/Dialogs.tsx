@@ -2,7 +2,9 @@ import React from 'react';
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogsItem/DialogsItem";
 import {Messages} from "./Messages/Messages";
-import {ActionType, DialogsPageType, newText, newTextValue} from "../../redux/state";
+import {ActionType, DialogsPageType} from "../../redux/state";
+import { newText, newTextValue} from "../../redux/dialogs-reducer";
+
 
 
 type DialogsDataPropsType = {
@@ -36,6 +38,7 @@ export const Dialogs = ({ dialogsPage, dispatch }: DialogsDataPropsType) => {
                     <button onClick={() => newText( dialogsPage.messages, dispatch  )}>Добавить!</button>
                 </div>
             </div>
+
         </div>
     );
 };
