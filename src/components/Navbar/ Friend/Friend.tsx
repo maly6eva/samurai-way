@@ -1,7 +1,7 @@
 import s from './Friend.module.css'
 import avatar from "../../../images/multiashnaia.webp";
 import React from "react";
-import {NavbarPropsType} from "../../../redux/state";
+import {NavbarPropsType, store} from "../../../redux/store";
 
 
 export const Friend = ({id, name}: NavbarPropsType) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 import {Friend} from "./ Friend/Friend";
-import {NavbarPropsType} from "../../redux/state";
+import {NavbarPropsType} from "../../redux/store";
 
 
 type DialogsDataPropsType = {

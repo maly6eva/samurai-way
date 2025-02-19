@@ -1,4 +1,4 @@
-import {ActionType} from "./state";
+import {ActionType, store} from "./store";
 
 export const UPDATE_NEW_MESSAGES_TEXT = 'updateNewMessageText' as const;
 export const MESSAGES_POST = 'messagesPost' as const
@@ -61,23 +61,23 @@ export const newText = (
 }
 
 export const dialogsReducer = (state: DialogsStateType = initialState, action: DialogsActionType): DialogsStateType => {
-   switch (action.type) {
-       case MESSAGES_POST:
-           const messageYouPost = {
-               id: state.messagesData.length + 1,
-               message: state.messages
-           }
-           state.messagesData.push(messageYouPost)
-           state.messages = ''
-           return state;
+    switch (action.type) {
+        case MESSAGES_POST:
+            const messageYouPost = {
+                id: state.messagesData.length + 1,
+                message: state.messages
+            }
+            state.messagesData.push(messageYouPost)
+            state.messages = ''
+            return state;
 
-       case UPDATE_NEW_MESSAGES_TEXT:
-           state.messages = action.newMessages
-           return state;
+        case UPDATE_NEW_MESSAGES_TEXT:
+            state.messages = action.newMessages
+            return state;
 
-       default:
-           return state;
-   }
+        default:
+            return state;
+    }
 }
 
 export const UpdateNewMessagesTextCreator = (newMessages: string): UpdateNewMessagesText => ({

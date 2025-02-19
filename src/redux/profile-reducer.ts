@@ -1,5 +1,5 @@
 import {ChangeEvent} from "react";
-import {ActionType} from "./state";
+import {ActionType, store} from "./store";
 
 export const ADD_POST = 'addPost' as const;
 export const UPDATE_NEW_POST_TEXT = 'updateNewPostText' as const;
@@ -52,25 +52,27 @@ export const addPostElement = (
         dispatch(addPostActionCreator())
     }
 }
-export const profileReducer = (state: ProfileStateType = initialState, action: ProfileActionType): ProfileStateType  => {
-   switch (action.type) {
-       case ADD_POST:
-           let newPost = {
-               id: state.post.length + 1,
-               message: state.newPostText,
-               like: 0,
-               name: 'Ksenia'
-           };
-           state.post.push(newPost)
-           state.newPostText = ''
-           return state;
+export const profileReducer = (
+    state: ProfileStateType = initialState,
+    action: ProfileActionType): ProfileStateType  => {
+    switch (action.type) {
+        case ADD_POST:
+            let newPost = {
+                id: state.post.length + 1,
+                message: state.newPostText,
+                like: 0,
+                name: 'Ksenia'
+            };
+            state.post.push(newPost)
+            state.newPostText = ''
+            return state;
 
-       case UPDATE_NEW_POST_TEXT:
-           state.newPostText = action.newText
-           return state;
-       default:
-           return state;
-   }
+        case UPDATE_NEW_POST_TEXT:
+            state.newPostText = action.newText
+            return state;
+        default:
+            return state;
+    }
 }
 
 export const addPostActionCreator = (): AddPostAction => ({
