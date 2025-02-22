@@ -1,20 +1,26 @@
-import React from 'react';
-import { MyPosts } from "./MyPosts/MyPosts";
+import React, {ChangeEvent} from 'react';
 import { ProfileInfo } from "./ProfileInfo/ProfileInfo";
 import s from './Profile.module.css';
-import {ActionType, ProfilePageProps} from "../../redux/store";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
+import { RootState} from "../../redux/redux-store";
+import {ActionType} from "../../redux/store";
+
+
 
 export type ProfileProps = {
-    profilePage: ProfilePageProps;
-    dispatch: (action: ActionType) => void
+    profilePage: {
+        post: { id: number; message: string; like: number; name: string }[];
+        newPostText: string;
+    };
+    dispatch: (action: ActionType) => void;
 };
 
-export const Profile: React.FC<ProfileProps> = ({ profilePage,  dispatch}) => {
+export const Profile: React.FC<ProfileProps> = ({  dispatch, profilePage}) => {
     return (
         <div>
             <ProfileInfo />
             <div className={s.myPosts}>
-                <MyPosts
+                <MyPostsContainer
                     post={profilePage.post}
                     newPostText={profilePage.newPostText}
                     dispatch={dispatch}
@@ -23,4 +29,3 @@ export const Profile: React.FC<ProfileProps> = ({ profilePage,  dispatch}) => {
         </div>
     );
 };
-

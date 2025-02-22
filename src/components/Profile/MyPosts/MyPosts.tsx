@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import {Post} from "./Post/Post";
 import s from './MyPosts.module.css'
 import {ActionType, PostProps} from "../../../redux/store";
@@ -7,11 +7,14 @@ import {addPostElement, addPostValue} from "../../../redux/profile-reducer";
 
 export type MyPostsProps = {
     post: PostProps[]
-    dispatch: (action: ActionType) => void
     newPostText: string,
+    updateNewPostText: () => void
+    updateNewPostValue: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-export const MyPosts = ({post, newPostText, dispatch}: MyPostsProps) => {
+export const MyPosts = ({post, newPostText, updateNewPostText, updateNewPostValue}: MyPostsProps) => {
+
+
     const postElement = post.map((p) => {
         return (
             <div className={s.posts} key={p.id}>
@@ -26,12 +29,12 @@ export const MyPosts = ({post, newPostText, dispatch}: MyPostsProps) => {
                 <h3>New post</h3>
             </div>
             <div>
-                <textarea value={newPostText} onChange={(e) => addPostValue(e, dispatch)}
+                <textarea value={newPostText} onChange={ updateNewPostValue }
                           placeholder={'Введите сообщение...'}/>
             </div>
 
             <div>
-                <button onClick={() => addPostElement(newPostText, dispatch)}>Add post</button>
+                <button onClick={updateNewPostText}>Add post</button>
             </div>
             <div className={s.dialogs}>
                 <div className={s.posts}>

@@ -1,4 +1,5 @@
 import {ActionType, store} from "./store";
+import {ChangeEvent} from "react";
 
 export const UPDATE_NEW_MESSAGES_TEXT = 'updateNewMessageText' as const;
 export const MESSAGES_POST = 'messagesPost' as const
@@ -44,12 +45,13 @@ export type MessagesPostAction = {
 
 export type DialogsActionType = UpdateNewMessagesText | MessagesPostAction
 
+
 export const newTextValue = (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
+    e: ChangeEvent<HTMLTextAreaElement>,
     dispatch: (action: ActionType) => void
 ) => {
-    dispatch(UpdateNewMessagesTextCreator(e.currentTarget.value))
-}
+    dispatch(UpdateNewMessagesTextCreator(e.currentTarget.value));
+};
 
 export const newText = (
     messages: string,
@@ -60,6 +62,7 @@ export const newText = (
     }
 }
 
+
 export const dialogsReducer = (state: DialogsStateType = initialState, action: DialogsActionType): DialogsStateType => {
     switch (action.type) {
         case MESSAGES_POST:
@@ -67,13 +70,17 @@ export const dialogsReducer = (state: DialogsStateType = initialState, action: D
                 id: state.messagesData.length + 1,
                 message: state.messages
             }
-            state.messagesData.push(messageYouPost)
-            state.messages = ''
-            return state;
+            let copyState = {...state}
+            copyState.messagesData.push(messageYouPost)
+            copyState.messages = ''
+            return copyState;
 
-        case UPDATE_NEW_MESSAGES_TEXT:
-            state.messages = action.newMessages
-            return state;
+        case UPDATE_NEW_MESSAGES_TEXT: {
+            const copyState = {...state}
+            copyState.messages = action.newMessages
+            return copyState;
+        }
+
 
         default:
             return state;

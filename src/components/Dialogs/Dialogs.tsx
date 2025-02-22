@@ -1,19 +1,21 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogsItem/DialogsItem";
 import {Messages} from "./Messages/Messages";
-import {ActionType, DialogsPageType} from "../../redux/store";
-import { newText, newTextValue} from "../../redux/dialogs-reducer";
+import { RootState} from "../../redux/redux-store";
+import {DialogsPageType} from "../../redux/store";
+
 
 
 
 type DialogsDataPropsType = {
+    updateNewMessageBody: () => void,
+    sensMessage: (e: ChangeEvent<HTMLTextAreaElement>) => void
     dialogsPage: DialogsPageType
-    dispatch: (action: ActionType) => void
+
 }
 
-export const Dialogs = ({ dialogsPage, dispatch }: DialogsDataPropsType) => {
-
+export const Dialogs = ({ updateNewMessageBody, sensMessage,  dialogsPage  }: DialogsDataPropsType) => {
     const dialogElement =  dialogsPage.dialogsData.map(dialog => {
         return (
             <DialogItem key={dialog.id} id={dialog.id} name={dialog.name}/>
@@ -34,11 +36,10 @@ export const Dialogs = ({ dialogsPage, dispatch }: DialogsDataPropsType) => {
             <div className={s.messages}>
                     {messagesElement}
                 <div className={s.textmessages}>
-                    <textarea value={dialogsPage.messages} onChange={(e) => newTextValue(e, dispatch)} placeholder={'Введите сообщение...'}></textarea>
-                    <button onClick={() => newText( dialogsPage.messages, dispatch  )}>Добавить!</button>
+                    <textarea value={dialogsPage.messages} onChange={sensMessage} placeholder={'Введите сообщение...'}></textarea>
+                    <button onClick={updateNewMessageBody}>Добавить!</button>
                 </div>
             </div>
-
         </div>
     );
 };

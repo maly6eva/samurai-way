@@ -63,13 +63,17 @@ export const profileReducer = (
                 like: 0,
                 name: 'Ksenia'
             };
-            state.post.push(newPost)
-            state.newPostText = ''
-            return state;
+            let stateCopy = {...state}
+            // stateCopy.post = [...state.post]
+            stateCopy.post.push(newPost)
+            stateCopy.newPostText = ''
+            return stateCopy;
 
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText
-            return state;
+        case UPDATE_NEW_POST_TEXT: {
+            let stateCopy = {...state}
+            stateCopy.newPostText = action.newText
+            return stateCopy;
+        }
         default:
             return state;
     }
